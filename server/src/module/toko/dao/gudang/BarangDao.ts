@@ -9,7 +9,7 @@ export class BarangDao {
 	async profileEdit(data: IAnggotaObj): Promise<IHasilQuery> {
 		return new Promise((resolve, reject) => {
 			Connection.pool.query(`UPDATE pengguna SET ? WHERE id = ?`, [data, data.id],
-				(_err, _rows) => {
+				(_err: any, _rows: any) => {
 					if (_err) {
 						console.error(_err);
 						reject(_err);

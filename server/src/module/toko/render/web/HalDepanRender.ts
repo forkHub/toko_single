@@ -5,9 +5,9 @@ import { config } from "../../Config";
 import { IBarangObj } from "../../Type";
 
 export class HalDepanRenderer {
-	render(daftarBarang: IBarangObj[], halLog: number, jmlBarang: number, kunci: string, userName: string): string {
+    render(daftarBarang: IBarangObj[], halLog: number, jmlBarang: number, kunci: string, userName: string): string {
 
-		return `
+        return `
             <!DOCTYPE html>
             <html lang="id">
                 <head>
@@ -23,7 +23,6 @@ export class HalDepanRenderer {
                     <meta property="og:type" content="website" />
                     <meta property="og:url" content="${config.website}">
                     <meta property="og:updated_time" content="1440432930" />
-
 
                     <link rel='stylesheet' href='/css/bootstrap.min.css' rel='stylesheet' />
                     <link rel='stylesheet' href="/css/css.css?r=${util.randId}" />
@@ -64,11 +63,11 @@ export class HalDepanRenderer {
 
                 </body>                  
             </html>`;
-	}
+    }
 
-	private info(kunci: string): string {
-		if (kunci == "---") return "";
-		return `
+    private info(kunci: string): string {
+        if (kunci == "---") return "";
+        return `
 
             <div class='info float-left text-align-center col-12'>
                 <p class=''>daftar barang berdasar kata kunci: ${kunci}</p>
@@ -77,26 +76,26 @@ export class HalDepanRenderer {
             <div class='clear'></div>
             <hr/>
         `;
-	}
+    }
 
-	private hal(halLog: number, jmlBarang: number, jmlPerHal: number, kunci: string): string {
-		if (kunci != "---") {
-			// return util.hal2(halLog, jmlBarang, `/toko/cari/${kunci}/hal/`, jmlPerHal);
-			return util.hal2(halLog, jmlBarang, kunci, toko.router.toko_web_beranda_cari_kataKunci_hal_hal, jmlPerHal);
-		}
-		else {
-			return util.hal2(halLog, jmlBarang, kunci, toko.router.toko_web_beranda_hal_hal, jmlPerHal);
-		}
-	}
+    private hal(halLog: number, jmlBarang: number, jmlPerHal: number, kunci: string): string {
+        if (kunci != "---") {
+            // return util.hal2(halLog, jmlBarang, `/toko/cari/${kunci}/hal/`, jmlPerHal);
+            return util.hal2(halLog, jmlBarang, kunci, toko.router.toko_web_beranda_cari_kataKunci_hal_hal, jmlPerHal);
+        }
+        else {
+            return util.hal2(halLog, jmlBarang, kunci, toko.router.toko_web_beranda_hal_hal, jmlPerHal);
+        }
+    }
 
-	private content(daftar: IBarangObj[]): string {
-		if (daftar.length == 0) {
-			return `<p class="col-12 text-align-center">Belum ada data barang</p>`;
-		}
-		else {
-			let hasil: string = '';
-			daftar.forEach((item: IBarangObj) => {
-				let itemHtml: string = `
+    private content(daftar: IBarangObj[]): string {
+        if (daftar.length == 0) {
+            return `<p class="col-12 text-align-center">Belum ada data barang</p>`;
+        }
+        else {
+            let hasil: string = '';
+            daftar.forEach((item: IBarangObj) => {
+                let itemHtml: string = `
 				<div class='item col-4 col-sm-3 col-md-2 padding text-align-center'>
                     <a class='bersih' href="${util.getUrl(toko.router.toko_web_barang_lihat_barangId, [item.id + ''])}">
                         <img class='kecil' src='${(item.thumb) ? (toko.kons.folder_download + item.thumb) : '/gbr/thumb.png'}'>
@@ -107,9 +106,9 @@ export class HalDepanRenderer {
                         </button>
                     </a>
 				</div>`;
-				hasil += itemHtml;
-			});
-			return hasil;
-		}
-	}
+                hasil += itemHtml;
+            });
+            return hasil;
+        }
+    }
 }
